@@ -13,7 +13,7 @@ LOCATION_NAME_TO_ID = {
     "quitter" : 3,
 }
 
-class gettoschoolLocation(Location):
+class gettoschoolLocation():
     game = "Get to School"
 
 def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | None]:
