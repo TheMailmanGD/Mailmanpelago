@@ -1,0 +1,1 @@
+from .world import gettoschoolworld as gettoschoolworld
