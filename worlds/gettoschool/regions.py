@@ -23,3 +23,5 @@ def connect_regions(world: gettoschoolworld) -> None:
     choices = world.get_region("Choices")
 
     choices_to_ending = Entrance(world.player, "Choices to Ending", parent=choices)
+    choices.exits.append(choices_to_ending)
+    choices_to_ending.connect(ending)

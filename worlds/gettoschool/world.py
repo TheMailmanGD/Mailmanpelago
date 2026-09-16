@@ -41,5 +41,5 @@ class gettoschoolworld(World):
 
     def fill_slot_data(self) -> Mapping[str, Any]:
         return self.options.as_dict(
-            "DeathLink"
+            "test"
         )

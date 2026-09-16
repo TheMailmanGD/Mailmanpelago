@@ -1,27 +1,30 @@
 from dataclasses import dataclass
 
-from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle, DeathLink
+from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle
 
-class deathlink(DeathLink):
+class test(Toggle):
     """
-    if you die, everyone dies. if anyone dies, you die.
+    test
     """
 
-    display_name = "Deathlink"
+    display_name = "Test Option"
+
+    default = False
 
 @dataclass
 class GodotAPOptions(PerGameCommonOptions):
-    deathlink: deathlink
+    test: test
+    
 
 option_groups = [
     OptionGroup(
         "Gameplay Options",
-        [deathlink],
+        [test],
     ),
 ]
 
 option_presets = {
     "default": {
-        "deathlink": False,
+        "test": False,
     },
 }

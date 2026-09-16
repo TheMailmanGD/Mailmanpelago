@@ -2,7 +2,9 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from BaseClasses import Item, ItemClassification
+from BaseClasses import Item, ItemClassification, Location
+
+from .items import gettoschoolItem
 
 if TYPE_CHECKING:
     from .world import gettoschoolworld
@@ -13,7 +15,7 @@ LOCATION_NAME_TO_ID = {
     "quitter" : 3,
 }
 
-class gettoschoolLocation():
+class gettoschoolLocation(Location):
     game = "Get to School"
 
 def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | None]:
@@ -30,11 +32,10 @@ def create_regular_locations(world: gettoschoolworld) -> None:
     ending_locations = get_location_names_with_ids(
         ["school", "sleepmania", "quitter"]
     )
-    ending.add_locations(ending_locations)
+    ending.add_locations(ending_locations, location_type=gettoschoolLocation)
 
 def create_events(world: gettoschoolworld) -> None:
-    pass
-    # ending = world.get_region("Ending")
-    # ending.add_event(
-    #     "all_endings", "Victory", location_type=gettoschoolLocation, item_type=items.gettoschoolItem
-    #     )
+    ending = world.get_region("Ending")
+    ending.add_event(
+        "All Endings Cleared", "Victory", location_type=gettoschoolLocation, item_type=gettoschoolItem
+    )
