@@ -4,24 +4,26 @@ from typing import Any
 from worlds.AutoWorld import World
 
 from . import items, locations, regions, rules, web_world
-from . import options as gts_options
+from . import options as rngdle_options
 
-class gettoschoolworld(World):
+
+
+class RNGdleWorld(World):
     """
-    Get to School is an absolute cinema game. truly peak.
+    this is stupid
     """
 
-    game = "Get to School"
+    game = "RNGdle"
 
-    web = web_world.gtsWeb()
+    web = web_world.RNGdleWebWorld()
 
-    options_dataclass = gts_options.GodotAPOptions
-    options: gts_options.GodotAPOptions
+    options_dataclass = rngdle_options.RNGdleOptions
+    options: rngdle_options.RNGdleOptions
 
     location_name_to_id = locations.LOCATION_NAME_TO_ID
     item_name_to_id = items.ITEM_NAME_TO_ID
 
-    origin_region_name = "Choices"
+    origin_region_name = "Uncommon"
 
     def create_regions(self) -> None:
         regions.create_and_connect_regions(self)
@@ -33,7 +35,7 @@ class gettoschoolworld(World):
     def create_items(self) -> None:
         items.create_all_items(self)
 
-    def create_item(self, name: str):
+    def create_item(self, name: str) -> items.RNGdleItem:
         return items.create_item_with_correct_classification(self, name)
 
     def get_filler_item_name(self) -> str:
@@ -41,5 +43,6 @@ class gettoschoolworld(World):
 
     def fill_slot_data(self) -> Mapping[str, Any]:
         return self.options.as_dict(
-            "Deathlink"
+            "deathlink", "deathlinkamnesty", "trapexpirationamount"
         )
+
