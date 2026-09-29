@@ -34,16 +34,16 @@ class RNGdleOptions(PerGameCommonOptions):
     deathlinkamnesty: DeathLinkAmnesty
     trapexpirationamount: TrapExpirationAmount
 
-option_groups = {
+option_groups = [
     OptionGroup(
-        "DeathLink"
-        [DeathLink, DeathLinkAmnesty]
+        "DeathLink",
+        [DeathLink, DeathLinkAmnesty],
     ),
     OptionGroup(
-        "Traps"
-        [TrapExpirationAmount]
-    )
-}
+        "Traps",
+        [TrapExpirationAmount],
+    ),
+]
 
 option_presets = {
     "default": {

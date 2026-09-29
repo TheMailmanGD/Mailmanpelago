@@ -19,10 +19,10 @@ def set_all_entrance_rules(world: RNGdleWorld) -> None:
     epic_to_anomaly = world.get_entrance("Epic to Anomaly")
     anomaly_to_mythic = world.get_entrance("Anomaly to Mythic")
 
-    can_rare = HasAll("Progressive Rarity")
-    can_epic = HasAll("Progressive Rarity", "Progressive Rarity")
-    can_anomaly = HasAll("Progressive Rarity", "Progressive Rarity", "Progressive Rarity")
-    can_mythic = HasAll("Progressive Rarity", "Progressive Rarity", "Progressive Rarity", "Progressive Rarity")
+    can_rare = HasAll("Progressive Roll Rarity")
+    can_epic = HasAll("Progressive Roll Rarity", "Progressive Roll Rarity")
+    can_anomaly = HasAll("Progressive Roll Rarity", "Progressive Roll Rarity", "Progressive Roll Rarity")
+    can_mythic = HasAll("Progressive Roll Rarity", "Progressive Roll Rarity", "Progressive Roll Rarity", "Progressive Roll Rarity")
 
     world.set_rule(uncommon_to_rare, can_rare)
     world.set_rule(rare_to_epic, can_epic)
@@ -30,10 +30,10 @@ def set_all_entrance_rules(world: RNGdleWorld) -> None:
     world.set_rule(anomaly_to_mythic, can_mythic)
 
 def set_all_location_rules(world: RNGdleWorld) -> None:
-    can_rare: Rule = HasAll("Progressive Rarity")
-    can_epic: Rule = HasAll("Progressive Rarity", "Progressive Rarity")
-    can_anomaly: Rule = HasAll("Progressive Rarity", "Progressive Rarity", "Progressive Rarity")
-    can_mythic: Rule = HasAll("Progressive Rarity", "Progressive Rarity", "Progressive Rarity", "Progressive Rarity")
+    can_rare: Rule = HasAll("Progressive Roll Rarity")
+    can_epic: Rule = HasAll("Progressive Roll Rarity", "Progressive Roll Rarity")
+    can_anomaly: Rule = HasAll("Progressive Roll Rarity", "Progressive Roll Rarity", "Progressive Roll Rarity")
+    can_mythic: Rule = HasAll("Progressive Roll Rarity", "Progressive Roll Rarity", "Progressive Roll Rarity", "Progressive Roll Rarity")
 
     rare_locations = [
         "Three Quarter Century",
@@ -227,10 +227,10 @@ def set_all_location_rules(world: RNGdleWorld) -> None:
 
 def set_completion_condition(world: RNGdleWorld) -> None:
     world.set_completion_rule(HasAll(
-        "Progressive Rarity",
-        "Progressive Rarity",
-        "Progressive Rarity",
-        "Progressive Rarity",
+        "Progressive Roll Rarity",
+        "Progressive Roll Rarity",
+        "Progressive Roll Rarity",
+        "Progressive Roll Rarity",
         "Progressive Zero Chance",
         "Progressive Zero Chance",
         "Progressive Zero Chance",

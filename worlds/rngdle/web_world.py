@@ -9,12 +9,12 @@ class RNGdleWebWorld(WebWorld):
     theme = "partyTime"
 
     setup_en = Tutorial(
-        "setup"
-        "setup guide"
+        "setup",
+        "setup guide",
         "English",
         "setup_en.md",
         "setup/en",
-        ["TheMailmanGD"]
+        ["TheMailmanGD"],
     )
 
     tutorials = [setup_en]
