@@ -11,7 +11,20 @@ if TYPE_CHECKING:
 # We will have a lookup from item name to ID here that, in world.py, we will import and bind to the world class.
 # Even if an item doesn't exist on specific options, it must be present in this lookup.
 ITEM_NAME_TO_ID = {
-    
+    "Sploosh-o-matic" : 1,
+    "Splattershot Jr." : 2,
+    "Splash-o-matic" : 3,
+    "Aerospray MG" : 4,
+    "Splattershot" : 5,
+    ".52 Gal" : 6,
+    "N-Zap '85" : 7,
+    "Splattershot Pro" : 8,
+    ".96 Gal" : 9,
+    "Jet Squelcher" : 10,
+    "Splattershot Nova" : 11,
+    "L-3 Nozzlenose" : 12,
+    "H-3 Nozzlenose" : 13,
+    "Squeezer" : 14,
 }
 
 # Items should have a defined default classification.
