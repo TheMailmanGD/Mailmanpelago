@@ -5,26 +5,213 @@ from typing import TYPE_CHECKING
 from BaseClasses import Item, ItemClassification
 
 if TYPE_CHECKING:
-    from .world import APQuestWorld
+    from .world import SplatoonWorld
 
+SARDINIUM_COUNT = 37
+HERO_SHOT_UPGRADE_COUNT = 3
+INK_TANK_UPGRADE_COUNT = 3
+SPLAT_BOMB_UPGRADE_COUNT = 3
+BURST_BOMB_UPGRADE_COUNT = 3
+
+SPECIAL_CHARGE_UP_COUNT = 2
 # Every item must have a unique integer ID associated with it.
 # We will have a lookup from item name to ID here that, in world.py, we will import and bind to the world class.
 # Even if an item doesn't exist on specific options, it must be present in this lookup.
-ITEM_NAME_TO_ID = {
-    "Sploosh-o-matic" : 1,
-    "Splattershot Jr." : 2,
-    "Splash-o-matic" : 3,
-    "Aerospray MG" : 4,
-    "Splattershot" : 5,
-    ".52 Gal" : 6,
-    "N-Zap '85" : 7,
-    "Splattershot Pro" : 8,
-    ".96 Gal" : 9,
-    "Jet Squelcher" : 10,
-    "Splattershot Nova" : 11,
-    "L-3 Nozzlenose" : 12,
-    "H-3 Nozzlenose" : 13,
-    "Squeezer" : 14,
+GLOBAL_SHOOTERS = {
+    "Sploosh-o-matic": 1,
+    "Splattershot Jr.": 2,
+    "Splash-o-matic": 3,
+    "Aerospray MG": 4,
+    "Splattershot": 5,
+    ".52 Gal": 6,
+    "N-Zap '85": 7,
+    "Splattershot Pro": 8,
+    ".96 Gal": 9,
+    "Jet Squelcher": 10,
+    "Splattershot Nova": 11,
+    "L-3 Nozzlenose": 12,
+    "H-3 Nozzlenose": 13,
+    "Squeezer": 14,
+}
+
+GLOBAL_ROLLERS = {
+    "Carbon Roller": 15,
+    "Splat Roller": 16,
+    "Dynamo Roller": 17,
+    "Flingza Roller": 18,
+    "Big Swig Roller": 19,
+}
+
+GLOBAL_CHARGERS = {
+    "Splat Charger": 20,
+    "Spark Charger": 21,
+    "Firefin Splat Charger": 22,
+    "Classic Squiffer": 23,
+    "Snipewriter": 24,
+    "Goo Tuber": 25,
+    "E-liter 4K": 26,
+}
+
+GLOBAL_SLOSHERS = {
+    "Slosher": 27,
+    "Tri-Slosher": 28,
+    "Explosher": 29,
+    "Bloblobber": 30,
+    "Dread Wringer": 31,
+}
+
+GLOBAL_SPLATLINGS = {
+    "Mini Splatling": 32,
+    "Heavy Splatling": 33,
+    "Hydra Splatling": 34,
+    "Ballpoint Splatling": 35,
+    "Nautilus 47": 36,
+}
+
+GLOBAL_DUALIES = {
+    "Splat Dualies": 37,
+    "Dark Tetra Dualies": 38,
+    "Glooga Dualies": 39,
+    "Dapple Dualies": 40,
+    "Tetra Dualies": 41,
+}
+
+GLOBAL_BLASTERS = {
+    "Blaster": 42,
+    "Range Blaster": 43,
+    "Luna Blaster": 44,
+    "Rapid Blaster": 45,
+    "Rapid Blaster Pro": 46,
+    "Clash Blaster": 47,
+    "S-BLAST '92": 48,
+}
+
+GLOBAL_BRUSHES = {
+    "Inkbrush": 49,
+    "Octobrush": 50,
+    "Painbrush": 51,
+}
+
+GLOBAL_SPLATANAS = {
+    "Splatana": 52,
+    "Splatana Wiper": 53,
+    "Splatana Stamper": 54,
+    "Decavitator": 55,
+}
+
+GLOBAL_STRINGERS = {
+    "Tri-Stringer": 56,
+    "REEF-LUX 450": 57,
+    "Wellstring V": 58,
+}
+
+GLOBAL_BRELLAS = {
+    "Splat Brella": 59,
+    "Tenta Brella": 60,
+    "Undercover Brella": 61,
+    "Sorella Brella": 62,
+    "Recycled Brella 24": 63,
+}
+
+GLOBAL_SUBS = {
+    "Splat Bomb": 101,
+    "Suction Bomb" : 102,
+    "Burst Bomb" : 103,
+    "Seeker" : 104,
+    "Curling Bomb" : 105,
+    "Autobomb" : 106,
+    "Ink Mine" : 107,
+    "Toxic Mist" : 108,
+    "Point Sensor" : 109,
+    "Splash Wall" : 110,
+    "Sprinkler" : 111,
+    "Squid Beakon" : 112,
+    "Fizzy Bomb" : 113,
+    "Torpedo" : 114,
+    "Angle Shooter" : 115,
+}
+
+GLOBAL_SPECIALS = {
+    "Baller" : 116,
+    "Bubbler (1, 3)" : 117,
+    "Bomb Rush (1, 2)" : 118,
+    "Booyah Bomb" : 119,
+    "Bubble Blower" : 120,
+    "Crab Tank" : 121,
+    "Ink Armor" : 122,
+    "Ink Storm" : 123,
+    "Ink Vac" : 124,
+    "Inkjet" : 125,
+    "Inkzooka (1, 3)" : 126,
+    "Killer Wail 5.1" : 127,
+    "Kraken Royale" : 128,
+    "Reefslider" : 129,
+    "Splashdown (2, 3)" : 130,
+    "Splattercolor Screen" : 131,
+    "Sting Ray" : 132,
+    "Super Chump" : 133,
+    "Tacticooler" : 134,
+    "Tenta Missiles" : 135,
+    "Triple Inkstrike" : 136,
+    "Ultra Stamp" : 137,
+    "Wave Breaker" : 138,
+    "Zipcaster" : 139
+}
+
+GLOBAL_HERO_MODE = {
+    "Sardinium (2, 3)" : 64,
+    "World 1 (3)" : 65,
+    "World 2 (1, 2, 3)" : 66,
+    "World 3 (1, 2, 3)" : 67,
+    "World 4 (1, 2, 3)" : 68,
+    "World 5 (1, 2, 3)" : 69,
+    "World 6 (3)" : 70,
+    "Finale (OE, RotM, Raiders)" : 71,
+}
+
+GLOBAL_HERO_MODE_UPGRADES = {
+    "Hero Shot Upgrade (1, 2, 3)" : 72,
+    "Ink Tank Upgrade (1, 2, 3)" : 73,
+    "Splat Bomb Upgrade (1, 3)" : 74,
+    "Burst Bomb Upgrade (1, 3)" : 75,
+
+    "Weapon Choice (Left)(OE, RotM)" : 76,
+    "Weapon Choice (Right)(OE, RotM)" : 77,
+}
+
+GLOBAL_ABILITIES = {
+    "Comeback": 78,
+    "Last-Ditch Effort": 79,
+    "Opening Gambit": 80,
+    "Tenacity": 81,
+    "Ability Doubler": 82,
+    "Haunt": 83,
+    "Ninja Squid": 84,
+    "Respawn Punisher": 85,
+    "Drop Roller": 86,
+    "Object Shredder": 87,
+    "Stealth Jump": 88,
+    "Ink Saver (Main) (Online, SO)": 89,
+    "Ink Saver (Sub) (Online, SO)": 90,
+    "Ink Recovery Up (Online, SO)": 91,
+    "Ink Resistance Up": 92,
+    "Sub Power Up": 93,
+    "Special Power Up": 94,
+    "Quick Respawn": 95,
+    "Quick Super Jump": 96,
+    "Run Speed Up (Online, SO)": 97,
+    "Special Charge Up (RotM, SO)" : 98,
+    "Special Saver": 99,
+    "Swim Speed Up (Online, SO)": 100,
+}
+
+GLOBAL_TRAPS = {
+    "Minimum Sensitivity Trap": 140,
+    "Really Loud Sting Ray Trap" : 141,
+    "Bee Trap" : 142,
+    "Freeze Trap" : 143,
+    "No Sub Weapon Trap" : 144,
+    "No Special Weapon Trap" : 145,
 }
 
 # Items should have a defined default classification.
@@ -43,7 +230,7 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
 # Each Item instance must correctly report the "game" it belongs to.
 # To make this simple, it is common practice to subclass the basic Item class and override the "game" field.
 class APQuestItem(Item):
-    game = "APQuest"
+    game = "Splatoon Decathlon"
 
 
 # Ontop of our regular itempool, our world must be able to create arbitrary amounts of filler as requested by core.
